@@ -117,7 +117,7 @@ const CandidateDashboard = () => {
         {/* Left column - Profile Overview */}
         <div className="md:col-span-1">
           <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-            <h2 className="text-xl font-semibold mb-4">Your Profile</h2>
+            <h2 className="text-xl font-semibold mb-4  text-black">Your Profile</h2>
             
             {preferences ? (
               <>
@@ -243,19 +243,19 @@ const CandidateDashboard = () => {
                 </span>
               </div>
 
-              <div className="mb-6">
+              <div className="mb-6 text-black">
                 <h3 className="font-semibold text-gray-800 mb-2">Salary Range</h3>
                 <p>{activeJob.salary}</p>
               </div>
 
-              <div className="mb-6">
+              <div className="mb-6 text-black">
                 <h3 className="font-semibold text-gray-800 mb-2">Job Description</h3>
-                <p className="text-gray-700">{activeJob.description}</p>
+                <p className="text-gray-700 ">{activeJob.description}</p>
               </div>
 
-              <div className="mb-6">
+              <div className="mb-6 text-black">
                 <h3 className="font-semibold text-gray-800 mb-2">Required Skills</h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2m text-black">
                   {activeJob.skills.map(skill => (
                     <span key={skill} className="bg-gray-100 text-gray-800 text-sm px-3 py-1 rounded-full">
                       {skill}
@@ -276,7 +276,7 @@ const CandidateDashboard = () => {
           ) : (
             <>
               <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-                <h2 className="text-xl font-semibold mb-4">Job Matches</h2>
+                <h2 className="text-xl font-semibold mb-4 text-black">Job Matches</h2>
                 
                 <div className="space-y-4">
                   {jobs.map(job => (
@@ -287,8 +287,8 @@ const CandidateDashboard = () => {
                     >
                       <div className="flex justify-between">
                         <div>
-                          <h3 className="font-medium text-lg">{job.title}</h3>
-                          <p className="text-gray-600 text-sm">{job.company} • {job.location}</p>
+                          <h3 className="font-medium text-lg text-black">{job.title}</h3>
+                          <p className="text-gray-600 text-sm text-black">{job.company} • {job.location}</p>
                         </div>
                         <div className="bg-green-100 text-green-800 h-fit text-sm px-3 py-1 rounded-full font-medium">
                           {job.matchScore}% Match

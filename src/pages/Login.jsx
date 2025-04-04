@@ -55,7 +55,7 @@ const Login = () => {
           <div>
             <label className="block text-gray-700 mb-2">User Type</label>
             <div className="flex space-x-4">
-              <label className="flex items-center">
+              <label className="flex items-center text-black">
                 <input
                   type="radio"
                   value="candidate"
@@ -63,9 +63,10 @@ const Login = () => {
                   onChange={() => setUserType("candidate")}
                   className="mr-2"
                 />
+
                 Candidate
               </label>
-              <label className="flex items-center">
+              <label className="flex items-center text-black">
                 <input
                   type="radio"
                   value="company"

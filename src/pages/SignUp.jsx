@@ -61,7 +61,7 @@ const SignUp = () => {
           <div>
             <label className="block text-gray-700 mb-2">I am a</label>
             <div className="flex space-x-4">
-              <label className="flex items-center">
+              <label className="flex items-center text-black">
                 <input
                   type="radio"
                   value="candidate"
@@ -71,7 +71,7 @@ const SignUp = () => {
                 />
                 Job Seeker
               </label>
-              <label className="flex items-center">
+              <label className="flex items-center text-black">
                 <input
                   type="radio"
                   value="company"
