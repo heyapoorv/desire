@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 
+
 // Mock candidates data
 const mockCandidates = [
   {
@@ -116,8 +117,12 @@ const CompanyDashboard = () => {
   const handleFilterCandidates = () => {
     if (!filterSkills.trim()) {
       setFilteredCandidates(candidates);
+      setFilterSkills("");
+
       return;
     }
+     // add this at the end of handleFilterCandidates
+
 
     const skills = filterSkills.toLowerCase().split(",").map(skill => skill.trim());
     
@@ -279,6 +284,7 @@ const CompanyDashboard = () => {
                           </button>
                         </div>
                       </div>
+                      
                     )}
                   </div>
                 ))}

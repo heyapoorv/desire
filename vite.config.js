@@ -10,4 +10,9 @@ export default defineConfig({
     react(),    
     tailwindcss(),
   ],
+  server: {
+    watch: {
+      ignored: ['**/backend/**'], // Adjust the path as per your project structure
+    },
+  },
 })
