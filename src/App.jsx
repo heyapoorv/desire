@@ -12,6 +12,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./context/ProtectedRoute";
+import UploadPage from "./pages/UploadPage";
+import ReviewPage from "./pages/Review"; // Import the ReviewPage component
 
 function App() {
   return (
@@ -34,6 +36,22 @@ function App() {
               element={
                 <ProtectedRoute userType="candidate">
                   <CandidateDashboard />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/upload" 
+              element={
+                <ProtectedRoute userType="candidate">
+                  <UploadPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/review" 
+              element={
+                <ProtectedRoute userType="candidate">
+                  <ReviewPage /> {/* Add the ReviewPage route here */}
                 </ProtectedRoute>
               } 
             />
