@@ -143,7 +143,7 @@ const CompanyDashboard = () => {
           {/* Left column - Job Postings */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-              <h2 className="text-xl font-bold mb-4">Add New Job Posting</h2>
+              <h2 className="text-xl font-bold mb-4 text-black">Add New Job Posting</h2>
               <form onSubmit={handleAddJobPosting}>
                 <div className="mb-4">
                   <label className="block text-gray-700 mb-2">Job Title</label>
@@ -151,7 +151,7 @@ const CompanyDashboard = () => {
                     type="text"
                     value={jobTitle}
                     onChange={(e) => setJobTitle(e.target.value)}
-                    className="w-full px-3 py-2 border rounded-md"
+                    className="w-full px-3 py-2 border rounded-md text-black"
                     placeholder="e.g. Frontend Developer"
                   />
                 </div>
@@ -161,13 +161,13 @@ const CompanyDashboard = () => {
                     type="text"
                     value={requiredSkills}
                     onChange={(e) => setRequiredSkills(e.target.value)}
-                    className="w-full px-3 py-2 border rounded-md"
+                    className="w-full px-3 py-2 border rounded-md text-black"
                     placeholder="e.g. React, JavaScript, HTML"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700"
+                  className="!bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700"
                 >
                   Post Job
                 </button>
@@ -175,7 +175,7 @@ const CompanyDashboard = () => {
             </div>
       
             <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold mb-4">Your Job Postings</h2>
+              <h2 className="text-xl font-bold mb-4 text-black">Your Job Postings</h2>
               {jobPostings.length === 0 ? (
                 <p className="text-gray-500">No job postings yet. Create one above.</p>
               ) : (
@@ -214,13 +214,13 @@ const CompanyDashboard = () => {
           {/* Right column - Candidates */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-              <h2 className="text-xl font-bold mb-4">Find Candidates</h2>
+              <h2 className="text-xl font-bold mb-4 text-black">Find Candidates</h2>
               <div className="flex gap-2 mb-4">
                 <input
                   type="text"
                   value={filterSkills}
                   onChange={(e) => setFilterSkills(e.target.value)}
-                  className="flex-grow px-3 py-2 border rounded-md"
+                  className="text-black flex-grow px-3 py-2 border rounded-md"
                   placeholder="Filter by skills (e.g. React, AWS)"
                 />
                 <button
@@ -235,7 +235,7 @@ const CompanyDashboard = () => {
                 {filteredCandidates.map((candidate) => (
                   <div 
                     key={candidate.id} 
-                    className={`py-4 px-2 cursor-pointer transition ${activeCandidateId === candidate.id ? 'bg-blue-50' : 'hover:bg-gray-50'}`}
+                    className={`py-4 px-2 cursor-pointer text-black transition ${activeCandidateId === candidate.id ? 'bg-blue-50' : 'hover:bg-gray-50'}`}
                     onClick={() => handleCandidateClick(candidate.id)}
                   >
                     <div className="flex justify-between items-center">
@@ -271,10 +271,10 @@ const CompanyDashboard = () => {
                           <p className="text-sm">{candidate.education}</p>
                         </div>
                         <div className="mt-4">
-                          <button className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 mr-2">
+                          <button className="!bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 mr-2">
                             Contact
                           </button>
-                          <button className="border border-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-50">
+                          <button className="border border-gray-300 text-white !bg-green-600  px-4 py-2 rounded-md hover:!bg-gray-50">
                             Save Profile
                           </button>
                         </div>

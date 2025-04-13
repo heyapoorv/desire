@@ -61,7 +61,7 @@ const Navbar = () => {
               )}
               <button 
                 onClick={handleLogout}
-                className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded transition !text-white"
+                className="!bg-red-500 hover:bg-red-600 px-4 py-2 rounded transition !text-white"
               >
                 Logout
               </button>
@@ -84,7 +84,7 @@ const Navbar = () => {
             {currentUser ? (
               <>
                 <Link to={currentUser.userType === "company" ? "/company-dashboard" : "/candidate-dashboard"} 
-                  className="!text-white hover:bg-blue-600 px-4 py-2 rounded transition"
+                  className="!text-white !bg-blue-600 px-4 py-2 rounded transition"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Dashboard
@@ -97,7 +97,7 @@ const Navbar = () => {
                 )}
                 <button 
                   onClick={handleLogout}
-                  className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded transition !text-white text-left"
+                  className="!bg-red-500 hover:bg-red-600 px-4 py-2 rounded transition !text-white text-left"
                 >
                   Logout
                 </button>
