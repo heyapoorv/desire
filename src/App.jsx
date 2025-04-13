@@ -5,7 +5,7 @@ import CompanyDashboard from "./pages/CompanyDashboard";
 import CandidateDashboard from "./pages/CandidateDashboard";
 import JobPreferencesForm from "./pages/JobPreferencesForm";
 import Roadmap from "./pages/Roadmap";
-import Login from "./pages/Login";
+import LogIn from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
@@ -53,7 +53,7 @@ function App() {
                 </ProtectedRoute>
               } 
             />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<LogIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

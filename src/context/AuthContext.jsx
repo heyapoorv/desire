@@ -1,69 +1,47 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from 'react';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebase';
 
 const AuthContext = createContext();
 
-export const useAuth = () => useContext(AuthContext);
-
-export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  function signUp(email, password, userType) {
+    localStorage.setItem("userType", userType); // store userType
+    return createUserWithEmailAndPassword(auth, email, password).then((res) => {
+      return { ...res.user, userType }; // return userType for redirection logic
+    });
+  }
+  
+  function logIn(email, password, userType) {
+    localStorage.setItem("userType", userType); // store userType
+    return signInWithEmailAndPassword(auth, email, password).then((res) => {
+      return { ...res.user, userType }; // return userType for redirection
+    });
+  }
+  
+  
+  function logOut() {
+    return signOut(auth);
+  }
+
   useEffect(() => {
-    // Check for saved user in localStorage on initial load
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      setCurrentUser(JSON.parse(savedUser));
-    }
-    setLoading(false);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+    return () => unsubscribe();
   }, []);
 
-  // Login function
-  const login = (email, password, userType) => {
-    // In a real app, this would be an API call
-    const user = { 
-      email, 
-      userType,
-      name: email.split('@')[0], // Mock name from email
-      id: Math.random().toString(36).substr(2, 9) // Mock ID
-    };
-    
-    localStorage.setItem("user", JSON.stringify(user));
-    setCurrentUser(user);
-    return user;
-  };
-
-  // Signup function
-  const signup = (name, email, password, userType) => {
-    // In a real app, this would be an API call
-    const user = { 
-      email, 
-      name,
-      userType,
-      id: Math.random().toString(36).substr(2, 9) // Mock ID
-    };
-    
-    localStorage.setItem("user", JSON.stringify(user));
-    setCurrentUser(user);
-    return user;
-  };
-
-  // Logout function
-  const logout = () => {
-    localStorage.removeItem("user");
-    setCurrentUser(null);
-  };
-
-  const value = {
-    currentUser,
-    login,
-    signup,
-    logout,
-    loading
-  };
-
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider value={{ signUp, logIn, logOut, user, loading }}>
       {!loading && children}
     </AuthContext.Provider>
   );
-};
+}
+
+export function useAuth() {
+  return useContext(AuthContext);
+}

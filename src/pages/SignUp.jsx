@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const SignUp = () => {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -11,13 +10,13 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { signup } = useAuth();
+  const { signUp } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!name || !email || !password || !confirmPassword) {
+    if (!email || !password || !confirmPassword) {
       return setError("Please fill in all fields");
     }
 
@@ -29,14 +28,17 @@ const SignUp = () => {
       setError("");
       setLoading(true);
 
-      const user = await signup(name, email, password, userType);
+      const user = await signUp(email, password, userType);
 
       // Redirect based on user type
-      if (user.userType === "company") {
+      localStorage.setItem("userType", userType); // <- add this before redirect
+
+      if (userType === "company") {
         navigate("/company-dashboard");
       } else {
         navigate("/job-preferences");
       }
+      
     } catch (err) {
       setError("Failed to create an account");
       console.error(err);
@@ -82,19 +84,6 @@ const SignUp = () => {
                 Employer
               </label>
             </div>
-          </div>
-
-          {/* Full Name */}
-          <div>
-            <label className="block text-gray-700 mb-2">Full Name</label>
-            <input 
-              type="text" 
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your full name" 
-              className="border border-gray-300 p-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-gray-900" 
-              required
-            />
           </div>
 
           {/* Email */}

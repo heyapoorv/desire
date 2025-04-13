@@ -2,19 +2,19 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-const Login = () => {
+const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userType, setUserType] = useState("candidate");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { login } = useAuth();
+  const { logIn } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!email || !password) {
       return setError("Please fill in all fields");
     }
@@ -23,14 +23,14 @@ const Login = () => {
       setError("");
       setLoading(true);
 
-      const user = await login(email, password, userType);
-
-      // Redirect based on user type
-      if (user.userType === "company") {
+      const user = await logIn(email, password, userType);
+      const storedUserType = localStorage.getItem("userType");
+      if (storedUserType === "company") {
         navigate("/company-dashboard");
       } else {
         navigate("/candidate-dashboard");
       }
+      
     } catch (err) {
       setError("Failed to sign in");
       console.error(err);
@@ -53,7 +53,7 @@ const Login = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* User Type Selection */}
           <div>
-            <label className="block text-gray-700 mb-2">User Type</label>
+            <label className="block text-gray-700 mb-2">I am a</label>
             <div className="flex space-x-4">
               <label className="flex items-center text-black">
                 <input
@@ -63,7 +63,6 @@ const Login = () => {
                   onChange={() => setUserType("candidate")}
                   className="mr-2"
                 />
-
                 Candidate
               </label>
               <label className="flex items-center text-black">
@@ -79,46 +78,46 @@ const Login = () => {
             </div>
           </div>
 
-          {/* Email Input */}
+          {/* Email */}
           <div>
             <label className="block text-gray-700 mb-2">Email</label>
-            <input 
-              type="email" 
+            <input
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email" 
-              className="border border-gray-300 p-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900" 
+              placeholder="Enter your email"
+              className="border border-gray-300 p-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900"
               required
             />
           </div>
 
-          {/* Password Input */}
+          {/* Password */}
           <div>
             <label className="block text-gray-700 mb-2">Password</label>
-            <input 
+            <input
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)} 
-              placeholder="Enter your password" 
-              className="border border-gray-300 p-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900" 
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              className="border border-gray-300 p-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900"
               required
             />
           </div>
 
           {/* Submit Button */}
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             disabled={loading}
-            className="!bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 w-full rounded-lg transition duration-300"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 w-full rounded-lg transition duration-300"
           >
-            {loading ? "Loading..." : "Login"}
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
         {/* Sign Up Link */}
         <div className="text-center mt-6">
           <p className="text-gray-600">
-            Don't have an account?{" "}
+            Don’t have an account?{" "}
             <Link to="/signup" className="text-blue-600 hover:text-blue-800 font-medium">
               Sign Up
             </Link>
@@ -129,4 +128,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LogIn;
