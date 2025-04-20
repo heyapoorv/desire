@@ -1,19 +1,37 @@
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-import { getAuth } from 'firebase/auth';
+//import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+//import {firebase} from "firebase/app";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCQipdnTnExB7wHS8RoqazRonO-M9y09zA",
-  authDomain: "resume-25019.firebaseapp.com",
-  projectId: "resume-25019",
-  storageBucket: "resume-25019.firebasestorage.app",
-  messagingSenderId: "737619886667",
-  appId: "1:737619886667:web:fe2d9fad42d5a128c343ce"
-};
+
+    apiKey: "AIzaSyBUrQJ5tnMCCJ6zITYgwp-FeanHQTo_QbA",
+  
+    authDomain: "resume-e7d10.firebaseapp.com",
+  
+    projectId: "resume-e7d10",
+  
+    storageBucket: "resume-e7d10.firebasestorage.app",
+  
+    messagingSenderId: "1054952519994",
+  
+    appId: "1:1054952519994:web:3fe53401b33f73f9f57803"
+  
+    
+  
+  };
+  
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+
+provider.setCustomParameters({
+    prompt: "select_account", // forces account selection every time
+  });
+
+// Export the necessary parts
+export { app,firebaseConfig,auth, provider,signInWithPopup };

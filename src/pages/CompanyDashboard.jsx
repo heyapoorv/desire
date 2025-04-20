@@ -130,6 +130,7 @@ const CompanyDashboard = () => {
   };
 
   const activeCandidate = candidates.find(c => c.id === activeCandidateId);
+  console.log("You are on the COMPANY dashboard");
 
   return (
     <div className="max-w-6xl mx-auto">

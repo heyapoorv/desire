@@ -1,0 +1,31 @@
+/* src/index.css or in UploadResume.module.css */
+.upload-container {
+    padding: 2rem;
+    max-width: 600px;
+    margin: auto;
+    background: #f4f4f4;
+    border-radius: 10px;
+  }
+  
+  .upload-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .upload-container input {
+    margin-bottom: 1rem;
+  }
+  
+  .upload-container button {
+    padding: 0.6rem 1.2rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .result {
+    margin-top: 2rem;
+  }
+  

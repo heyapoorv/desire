@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+
+backend/client-firebase.js
+.env
+src/firebase.js
+backend/serviceAccountkey.json

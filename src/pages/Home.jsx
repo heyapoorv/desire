@@ -8,7 +8,7 @@ const Home = () => {
     <div className="flex flex-col items-center justify-center w-full min-h-screen bg-gradient-to-br from-blue-50 to-gray-100">
       <div className="text-center w-full max-w-6xl px-6">
         <h1 className="text-6xl font-bold mb-6 text-blue-700 drop-shadow-md">
-          Resume Analyzer
+          SMART HIRE
         </h1>
         <p className="text-lg md:text-xl mb-8 text-gray-800 leading-relaxed">
           Bridging the gap between talented candidates and forward-thinking companies. 
